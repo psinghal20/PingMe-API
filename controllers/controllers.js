@@ -10,6 +10,8 @@ function URLGenerator(SearchInfo){
 		q=q+keywords[i]+'+';
 	}
 	q=q+keywords[keywords.length-1];
+	q=q+'+S'+SearchInfo.season+'E'+SearchInfo.episode;
+	console.log(q);
 	return BaseURL+q+"&page=0&orderby=99";
 }
 
@@ -29,7 +31,6 @@ exports.SearchTorrent = function(req,res){
 		$("#SearchResults .detName > a").each(function(){
 			
 			var TorrentName=$(this).text();
-			
 			var match ={ 
 				TorrentName:TorrentName,
 				season : (TorrentName.match(patterns.season)?TorrentName.match(patterns.season)[2]:0),
