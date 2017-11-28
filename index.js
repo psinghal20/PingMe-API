@@ -1,7 +1,14 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 var http = require('http').Server(app);
 var routes = require('./routes/routes');
+var bodyParser = require('body-parser');
+
+//app.options('*', cors())
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+//app.use(cors);
 
 app.use('/',routes);
 
