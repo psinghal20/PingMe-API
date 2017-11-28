@@ -28,10 +28,10 @@ function URLGeneratorMovies(SearchInfo){
 exports.SearchTorrent = function(req,res,next){
 	console.log(req);
 	var SearchInfo = {
-		name:req.body.name,
-		season:req.body.season,
-		episode:req.body.episode,
-		quality:req.body.quality
+		name:req.query.name,
+		season:req.query.season,
+		episode:req.query.episode,
+		quality:req.query.quality
 	}
 	console.log(SearchInfo);
 	request(URLGenerator(SearchInfo), function (error, response, body) {
@@ -63,8 +63,8 @@ exports.SearchTorrent = function(req,res,next){
 
 exports.SearchMovie = function(req,res){
 	var SearchInfo = {
-		name:req.body.name,
-		quality:req.body.quality,
+		name:req.query.name,
+		quality:req.query.quality,
 	}
 	request(URLGeneratorMovies(SearchInfo), function (error, response, body) {
 		var $ = cheerio.load(body);
