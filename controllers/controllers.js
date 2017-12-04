@@ -89,3 +89,14 @@ exports.SearchMovie = function(req,res){
 		res.json(response);
 	});
 }
+
+exports.GetMagnetLink = function(req,res){
+  request(req.query.link,function(error,response,body){
+    var $ = cheerio.load(body);
+    var response = {
+      magnetLink:$('.download').children().first().attr('href')
+    }
+    res.header('Access-Control-Allow-Origin',"*");
+    res.json(response);
+  })
+}
